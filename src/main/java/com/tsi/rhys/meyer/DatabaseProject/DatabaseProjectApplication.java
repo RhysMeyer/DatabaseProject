@@ -92,11 +92,11 @@ public class DatabaseProjectApplication {
 
 //	findById
 
-	@RequestMapping(value="/data/{itemid}", method = RequestMethod.GET)
-	public @ResponseBody
-	String getitem(@PathVariable("itemid") String itemid) {
-		return itemid;
-	}
+//	@RequestMapping(value="/data/{itemid}", method = RequestMethod.GET)
+//	public @ResponseBody
+//	String getitem(@PathVariable("itemid") String itemid) {
+//		return itemid;
+//	}
 
 	@RequestMapping(value="/actor/{actor_id}", method = RequestMethod.GET)
 	public @ResponseBody
