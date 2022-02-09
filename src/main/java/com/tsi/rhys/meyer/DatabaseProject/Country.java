@@ -2,7 +2,9 @@ package com.tsi.rhys.meyer.DatabaseProject;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Time;
 import java.sql.Timestamp;
 
 @Entity
@@ -12,8 +14,18 @@ public class Country {
 
     }
 
+    public Country(String country)
+    {
+        this.country = country;
+    }
+    public Country(String country, Timestamp timestamp)
+    {
+        this.country = country;
+        this.last_update = timestamp;
+    }
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int country_id;
     private String country;
     private Timestamp last_update;

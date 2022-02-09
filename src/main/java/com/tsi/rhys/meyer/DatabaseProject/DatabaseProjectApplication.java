@@ -5,6 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Optional;
 
 @SpringBootApplication
@@ -100,6 +102,15 @@ public class DatabaseProjectApplication {
 	public @ResponseBody
 	Optional<Actor> getActorID(@PathVariable("actor_id") int actorID) {
 		return actorRepository.	findById(actorID);
+	}
+
+	@PostMapping("/addCountry")
+	public @ResponseBody String addCountry (@RequestParam String country) {
+		Date date = new Date();
+		Country addCountry = new Country(country, new Timestamp(date.getTime()));
+		countryRepository.save(addCountry);
+		return "Saved";
+
 	}
 
 }
