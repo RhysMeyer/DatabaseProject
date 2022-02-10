@@ -1,5 +1,6 @@
 package com.tsi.rhys.meyer.demoTest;
 
+import com.tsi.rhys.meyer.DatabaseProject.Actor;
 import com.tsi.rhys.meyer.DatabaseProject.Country;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,6 +18,15 @@ public class CountryTest {
     @Test
     public void test_constructor(){
         assertTrue("Its not an instance of Country", country instanceof Country);
+    }
+
+    @Test
+    public void test_countryInstantiation(){
+        Date date = new Date();
+        Timestamp ts = new Timestamp(date.getTime());
+        country = new Country("Test",ts);
+        assertEquals("Test", country.getCountry());
+        assertEquals(ts,country.getLast_update());
     }
 
     @Test
