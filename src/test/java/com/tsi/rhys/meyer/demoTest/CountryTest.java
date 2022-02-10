@@ -25,11 +25,13 @@ public class CountryTest {
         assertEquals("TestCountry", country.getCountry());
     }
 
+    @Test
     public void test_getID(){
         country.setCountry_id(100);
         assertEquals(100,country.getCountry_id());
     }
 
+    @Test
     public void test_setTimeStamp(){
         Date date = new Date();
         Timestamp ts = new Timestamp(date.getTime());
