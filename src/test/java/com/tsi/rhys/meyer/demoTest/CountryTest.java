@@ -24,7 +24,8 @@ public class CountryTest {
     public void test_countryInstantiation(){
         Date date = new Date();
         Timestamp ts = new Timestamp(date.getTime());
-        country = new Country("Test",ts);
+        country = new Country(1,"Test",ts);
+        assertEquals(1,country.getCountry_id());
         assertEquals("Test", country.getCountry());
         assertEquals(ts,country.getLast_update());
     }
