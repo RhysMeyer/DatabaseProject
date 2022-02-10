@@ -1,13 +1,23 @@
 package com.tsi.rhys.meyer.demoTest;
 
+import com.tsi.rhys.meyer.DatabaseProject.Actor;
 import com.tsi.rhys.meyer.DatabaseProject.Address;
 import org.junit.jupiter.api.Test;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class AddressTest {
 
     Address address = new Address();
+
+    @Test
+    public void test_constructor(){
+        assertTrue("Its not an instance of Actor", address instanceof Address);
+    }
 
     @Test
     public void test_getID(){
@@ -16,9 +26,15 @@ public class AddressTest {
     }
 
     @Test
-    public void test_getAddres(){
+    public void test_getAddress(){
         address.setAddress("TestAddress");
         assertEquals("TestAddress", address.getAddress());
+    }
+
+    @Test
+    public void test_Address2(){
+        address.setAddress2("TestAddress2");
+        assertEquals("TestAddress2", address.getAddress2());
     }
 
     @Test
@@ -43,5 +59,14 @@ public class AddressTest {
     public void test_getPhone(){
         address.setPhone("0774853134");
         assertEquals("0774853134", address.getPhone());
+    }
+
+    @Test
+    public void test_setTimeStamp(){
+        Date date = new Date();
+        Timestamp ts = new Timestamp(date.getTime());
+        address.setLast_update(ts);
+        assertEquals(ts,address.getLast_update());
+
     }
 }
