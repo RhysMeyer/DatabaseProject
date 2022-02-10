@@ -31,13 +31,13 @@ public class ActorTest {
         actor = new Actor(1,"Test","Name",ts);
         assertEquals("Test", actor.getFirst_name());
         assertEquals("Name", actor.getLast_name());
-        assertEquals(100,actor.getActor_id());
+        assertEquals(1,actor.getActor_id());
         assertEquals(ts,actor.getLast_update());
     }
 
     @Test
     public void test_getLastName(){
-        actor.setFirst_name("Name");
+        actor.setLast_name("Name");
         assertEquals("Name", actor.getLast_name());
     }
 
