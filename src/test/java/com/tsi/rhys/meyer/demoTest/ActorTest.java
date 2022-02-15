@@ -1,6 +1,6 @@
 package com.tsi.rhys.meyer.demoTest;
 
-import com.tsi.rhys.meyer.DatabaseProject.Actor;
+import com.tsi.rhys.meyer.DatabaseProject.Actor.Actor;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Timestamp;

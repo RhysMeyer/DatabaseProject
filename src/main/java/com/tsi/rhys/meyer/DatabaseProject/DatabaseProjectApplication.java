@@ -1,10 +1,22 @@
 package com.tsi.rhys.meyer.DatabaseProject;
 
+import com.tsi.rhys.meyer.DatabaseProject.Actor.Actor;
+import com.tsi.rhys.meyer.DatabaseProject.Actor.ActorRepository;
+import com.tsi.rhys.meyer.DatabaseProject.Address.Address;
+import com.tsi.rhys.meyer.DatabaseProject.Address.AddressRepository;
+import com.tsi.rhys.meyer.DatabaseProject.City.City;
+import com.tsi.rhys.meyer.DatabaseProject.City.CityRepository;
+import com.tsi.rhys.meyer.DatabaseProject.Country.Country;
+import com.tsi.rhys.meyer.DatabaseProject.Country.CountryRepository;
+import com.tsi.rhys.meyer.DatabaseProject.Film.Film;
+import com.tsi.rhys.meyer.DatabaseProject.Film.FilmRepository;
+import com.tsi.rhys.meyer.DatabaseProject.Langauage.Language;
+import com.tsi.rhys.meyer.DatabaseProject.Langauage.LanguageRepository;
+import com.tsi.rhys.meyer.DatabaseProject.Store.Store;
+import com.tsi.rhys.meyer.DatabaseProject.Store.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
@@ -14,23 +26,23 @@ import java.util.Optional;
 
 @SpringBootApplication
 @RestController
-@RequestMapping("/Home")
+@RequestMapping("/index")
 public class DatabaseProjectApplication {
 
 	@Autowired
-	private  LanguageRepository languageRepository;
+	private LanguageRepository languageRepository;
 	@Autowired
-	private  ActorRepository actorRepository;
+	private ActorRepository actorRepository;
 	@Autowired
-	private  AddressRepository addressRepository;
+	private AddressRepository addressRepository;
 	@Autowired
-	private  CityRepository cityRepository;
+	private CityRepository cityRepository;
 	@Autowired
-	private  CountryRepository countryRepository;
+	private CountryRepository countryRepository;
 	@Autowired
-	private  FilmRepository filmRepository;
+	private FilmRepository filmRepository;
 	@Autowired
-	private  StoreRepository storeRepository;
+	private StoreRepository storeRepository;
 
 	public DatabaseProjectApplication(LanguageRepository languageRepository, ActorRepository actorRepository, AddressRepository addressRepository,
 		CityRepository cityRepository, CountryRepository countryRepository, FilmRepository filmRepository, StoreRepository storeRepository){
@@ -134,6 +146,34 @@ public class DatabaseProjectApplication {
 	Optional<Film> getFilmID(@PathVariable("film_id") int filmID) {
 		return filmRepository.findById(filmID);
 	}
+
+	@PostMapping("/addFilm")
+	public @ResponseBody String addFilm(@RequestParam String title, String description, int release_year, int length, String rating, int language_id){
+		Film addFilm = new Film(title, description, release_year, length, rating, language_id);
+		//Film addFilm = new Film();
+		filmRepository.save(addFilm);
+		return "Saved";
+	}
+
+
+	@DeleteMapping("/removeFilm")
+	public @ResponseBody String deleteFilms(@RequestParam int id)
+	{
+		filmRepository.findById(id).orElseThrow();
+		filmRepository.deleteById(id);
+		return "Deleted";
+	}
+
+//	@PostMapping("/addFilm")
+//	public @ResponseBody String addFilm(@RequestParam String title) {
+//		Date date = new Date();
+//		Film addCountry = new Film(title);
+//		filmRepository.save(addCountry);
+//		return "Saved";
+//
+//	}
+
+
 
 	////////////////////////Language////////////////////////
 

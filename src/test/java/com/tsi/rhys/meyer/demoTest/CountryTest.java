@@ -1,9 +1,7 @@
 package com.tsi.rhys.meyer.demoTest;
 
-import com.tsi.rhys.meyer.DatabaseProject.Actor;
-import com.tsi.rhys.meyer.DatabaseProject.Country;
+import com.tsi.rhys.meyer.DatabaseProject.Country.Country;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.sql.Timestamp;
 import java.util.Date;

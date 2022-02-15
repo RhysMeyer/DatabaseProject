@@ -1,8 +1,6 @@
 package com.tsi.rhys.meyer.demoTest;
 
-import com.tsi.rhys.meyer.DatabaseProject.Actor;
-import com.tsi.rhys.meyer.DatabaseProject.City;
-import io.cucumber.messages.types.Ci;
+import com.tsi.rhys.meyer.DatabaseProject.City.City;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Timestamp;
