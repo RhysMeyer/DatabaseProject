@@ -1,5 +1,8 @@
 package com.tsi.rhys.meyer.DatabaseProject;
 
+import com.amazonaws.services.secretsmanager.AWSSecretsManager;
+import com.amazonaws.services.secretsmanager.AWSSecretsManagerClientBuilder;
+import com.amazonaws.services.secretsmanager.model.*;
 import com.tsi.rhys.meyer.DatabaseProject.Actor.Actor;
 import com.tsi.rhys.meyer.DatabaseProject.Actor.ActorRepository;
 import com.tsi.rhys.meyer.DatabaseProject.Address.Address;
@@ -14,16 +17,23 @@ import com.tsi.rhys.meyer.DatabaseProject.Langauage.Language;
 import com.tsi.rhys.meyer.DatabaseProject.Langauage.LanguageRepository;
 import com.tsi.rhys.meyer.DatabaseProject.Store.Store;
 import com.tsi.rhys.meyer.DatabaseProject.Store.StoreRepository;
+import org.apache.maven.plugin.descriptor.InvalidParameterException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.dynamodb.model.ResourceNotFoundException;
 
 import java.sql.Timestamp;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Optional;
 
+//@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 @SpringBootApplication
 @RestController
 @RequestMapping("/index")
@@ -60,8 +70,7 @@ public class DatabaseProjectApplication {
 //		this.actorRepository = actorRepository;
 //	}
 
-	public static void main(String[] args) {
-		SpringApplication.run(DatabaseProjectApplication.class, args);
+	public static void main(String[] args) {SpringApplication.run(DatabaseProjectApplication.class, args);
 	}
 
 

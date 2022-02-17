@@ -67,4 +67,16 @@ public class MockitoTest {
         Assertions.assertEquals(expected,actual, "Data hasnt been added to mock DB");
     }
 
+    @Test
+    public void testDeleteFilm(){
+        Film saveFilm = new Film("Test Name", "Description Test",2006, 1, "PG", 90);
+        String expected = "Saved";
+        //String addFilm(@RequestParam String title, String description, int release_year, int length, String rating, int language_id){
+        String actual = databaseProjectApplication.addFilm(saveFilm.getTitle(),saveFilm.getDescription(),saveFilm.getRelease_year(),saveFilm.getLength(),saveFilm.getRating(),saveFilm.getLanguage_id());
+        ArgumentCaptor<Film>filmArgumentCaptor = ArgumentCaptor.forClass(Film.class);
+        verify(filmRepository).save(filmArgumentCaptor.capture());
+        filmArgumentCaptor.getValue();
+        Assertions.assertEquals(expected,actual, "Data hasnt been added to mock DB");
+    }
+
 }
