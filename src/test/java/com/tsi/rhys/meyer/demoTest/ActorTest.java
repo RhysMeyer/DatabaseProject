@@ -28,8 +28,8 @@ public class ActorTest {
     public void test_actorInstantiation(){
         Date date = new Date();
         Timestamp ts = new Timestamp(date.getTime());
-        actor = new Actor(1,"Test","Name",ts);
-        assertEquals("Test", actor.getFirst_name());
+        actor = new Actor(1,"Tested","Name",ts);
+        assertEquals("Tested", actor.getFirst_name());
         assertEquals("Name", actor.getLast_name());
         assertEquals(1,actor.getActor_id());
         assertEquals(ts,actor.getLast_update());
