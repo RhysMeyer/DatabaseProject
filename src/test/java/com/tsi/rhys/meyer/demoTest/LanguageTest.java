@@ -1,0 +1,32 @@
+package com.tsi.rhys.meyer.demoTest;
+
+import com.tsi.rhys.meyer.DatabaseProject.Film.Film;
+import com.tsi.rhys.meyer.DatabaseProject.Langauage.Language;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+public class LanguageTest {
+
+    private Language language = new Language();
+
+    @Test
+    public void test_constructor(){
+        assertTrue("Its not an instance of Language", language instanceof Language);
+    }
+
+    @Test
+    public void test_getLanguageID(){
+        language.setLanguage_id(1);
+        assertEquals(1, language.getLanguage_id());
+    }
+
+    @Test
+    public void test_getName(){
+        language.setName("TestLan");
+        assertEquals("TestLan", language.getName());
+    }
+
+
+}

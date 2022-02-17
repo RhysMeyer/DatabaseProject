@@ -21,6 +21,10 @@ public class Language {
 
     }
 
+    public  void setLanguage_id(int id){
+        this.language_id = id;
+    }
+
     public int getLanguage_id() {
         return language_id;
     }

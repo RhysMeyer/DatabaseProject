@@ -15,8 +15,8 @@ import com.tsi.rhys.meyer.DatabaseProject.Film.Film;
 import com.tsi.rhys.meyer.DatabaseProject.Film.FilmRepository;
 import com.tsi.rhys.meyer.DatabaseProject.Langauage.Language;
 import com.tsi.rhys.meyer.DatabaseProject.Langauage.LanguageRepository;
-import com.tsi.rhys.meyer.DatabaseProject.Store.Store;
-import com.tsi.rhys.meyer.DatabaseProject.Store.StoreRepository;
+//import com.tsi.rhys.meyer.DatabaseProject.Store.Store;
+//import com.tsi.rhys.meyer.DatabaseProject.Store.StoreRepository;
 import org.apache.maven.plugin.descriptor.InvalidParameterException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -51,18 +51,18 @@ public class DatabaseProjectApplication {
 	private CountryRepository countryRepository;
 	@Autowired
 	private FilmRepository filmRepository;
-	@Autowired
-	private StoreRepository storeRepository;
+//	@Autowired
+//	private StoreRepository storeRepository;
 
 	public DatabaseProjectApplication(LanguageRepository languageRepository, ActorRepository actorRepository, AddressRepository addressRepository,
-		CityRepository cityRepository, CountryRepository countryRepository, FilmRepository filmRepository, StoreRepository storeRepository){
+		CityRepository cityRepository, CountryRepository countryRepository, FilmRepository filmRepository){
 		this.languageRepository = languageRepository;
 		this.actorRepository = actorRepository;
 		this.addressRepository = addressRepository;
 		this.cityRepository = cityRepository;
 		this.countryRepository = countryRepository;
 		this.filmRepository = filmRepository;
-		this.storeRepository = storeRepository;
+//		this.storeRepository = storeRepository;
 	}
 
 //	public DatabaseProjectApplication(LanguageRepository languageRepository, ActorRepository actorRepository){
@@ -200,17 +200,17 @@ public class DatabaseProjectApplication {
 
 
 	////////////////////////Store////////////////////////
-	@GetMapping("/AllStores")
-	public  @ResponseBody
-	Iterable<Store> getAllStores(){
-		return storeRepository.findAll();
-	}
-
-	@RequestMapping(value="/store/{store_id}", method = RequestMethod.GET)
-	public @ResponseBody
-	Optional<Store> getStoreID(@PathVariable("store_id") int languageID) {
-		return storeRepository.findById(languageID);
-	}
+//	@GetMapping("/AllStores")
+//	public  @ResponseBody
+//	Iterable<Store> getAllStores(){
+//		return storeRepository.findAll();
+//	}
+//
+//	@RequestMapping(value="/store/{store_id}", method = RequestMethod.GET)
+//	public @ResponseBody
+//	Optional<Store> getStoreID(@PathVariable("store_id") int languageID) {
+//		return storeRepository.findById(languageID);
+//	}
 
 
 

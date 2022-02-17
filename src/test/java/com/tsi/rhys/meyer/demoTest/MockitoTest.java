@@ -9,7 +9,7 @@ import com.tsi.rhys.meyer.DatabaseProject.DatabaseProjectApplication;
 import com.tsi.rhys.meyer.DatabaseProject.Film.Film;
 import com.tsi.rhys.meyer.DatabaseProject.Film.FilmRepository;
 import com.tsi.rhys.meyer.DatabaseProject.Langauage.LanguageRepository;
-import com.tsi.rhys.meyer.DatabaseProject.Store.StoreRepository;
+//import com.tsi.rhys.meyer.DatabaseProject.Store.StoreRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,14 +34,14 @@ public class MockitoTest {
     private CityRepository cityRepository;
     @Mock
     private CountryRepository countryRepository;
-    @Mock
-    private StoreRepository storeRepository;
+//    @Mock
+//    private StoreRepository storeRepository;
     @Mock
     private FilmRepository filmRepository;
 
     @BeforeEach
     void Setup(){
-        databaseProjectApplication = new DatabaseProjectApplication(languageRepository,actorRepository,addressRepository,cityRepository,countryRepository,filmRepository,storeRepository);
+        databaseProjectApplication = new DatabaseProjectApplication(languageRepository,actorRepository,addressRepository,cityRepository,countryRepository,filmRepository);
     }
 
     @Test
