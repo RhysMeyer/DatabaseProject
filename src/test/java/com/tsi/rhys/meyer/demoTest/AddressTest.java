@@ -71,7 +71,7 @@ public class AddressTest {
 
     @Test
     public void test_getLocation(){
-        address.setAddress("Test Address");
-        assertEquals("Test Address", address.getAddress());
+        address.setLocation("Test Address");
+        assertEquals("Test Address", address.getLocation());
     }
 }

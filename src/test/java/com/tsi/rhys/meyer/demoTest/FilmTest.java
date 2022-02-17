@@ -2,6 +2,7 @@ package com.tsi.rhys.meyer.demoTest;
 
 import com.tsi.rhys.meyer.DatabaseProject.Actor.Actor;
 import com.tsi.rhys.meyer.DatabaseProject.Film.Film;
+import com.tsi.rhys.meyer.DatabaseProject.Langauage.Language;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -14,6 +15,35 @@ public class FilmTest {
     @Test
     public void test_constructor(){
         assertTrue("Its not an instance of Actor", film instanceof Film);
+    }
+
+    @Test
+    public void test_filmInstantiation(){
+        film = new Film("test");
+        assertEquals("test",film.getTitle());
+    }
+
+    @Test
+    public void test_filmInstantiation2(){
+        film = new Film("test","desc",2000,2,"PG",1);
+        assertEquals("test",film.getTitle());
+        assertEquals("desc",film.getDescription());
+        assertEquals(2000,film.getRelease_year());
+        assertEquals(2,film.getLength());
+        assertEquals("PG",film.getRating());
+        assertEquals(1, film.getLanguage_id());
+    }
+
+    @Test
+    public void test_filmInstantiation3(){
+        film = new Film("test","desc",2000,2,"PG",1,"Trailers");
+        assertEquals("test",film.getTitle());
+        assertEquals("desc",film.getDescription());
+        assertEquals(2000,film.getRelease_year());
+        assertEquals(2,film.getLength());
+        assertEquals("PG",film.getRating());
+        assertEquals(1, film.getLanguage_id());
+        assertEquals("Trailers",film.getSpecial_features());
     }
 
     @Test

@@ -19,6 +19,7 @@ public class CityTest {
         assertTrue("Its not an instance of Actor", city instanceof City);
     }
 
+    @Test
     public void test_cityInstantiation(){
         Date date = new Date();
         Timestamp ts = new Timestamp(date.getTime());
