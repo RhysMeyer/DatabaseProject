@@ -36,6 +36,13 @@ public class ActorTest {
     }
 
     @Test
+    public void test_actorInstantiation2(){
+        actor = new Actor("Test","Name");
+        assertEquals("Test", actor.getFirst_name());
+        assertEquals("Name", actor.getLast_name());
+    }
+
+    @Test
     public void test_getLastName(){
         actor.setLast_name("Name");
         assertEquals("Name", actor.getLast_name());

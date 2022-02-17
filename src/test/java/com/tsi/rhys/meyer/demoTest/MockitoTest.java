@@ -1,5 +1,6 @@
 package com.tsi.rhys.meyer.demoTest;
 
+import com.tsi.rhys.meyer.DatabaseProject.Actor.Actor;
 import com.tsi.rhys.meyer.DatabaseProject.Actor.ActorRepository;
 import com.tsi.rhys.meyer.DatabaseProject.Address.AddressRepository;
 import com.tsi.rhys.meyer.DatabaseProject.City.CityRepository;
@@ -17,7 +18,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)//inhereting characteristics needed to use mockito
 public class MockitoTest {
@@ -67,16 +73,38 @@ public class MockitoTest {
         Assertions.assertEquals(expected,actual, "Data hasnt been added to mock DB");
     }
 
+//    @Test
+//    public void testDeleteFilm(){
+//        Film saveFilm = new Film("Test Name", "Description Test",2006, 1, "PG", 90);
+//        String expected = "Saved";
+//        //String addFilm(@RequestParam String title, String description, int release_year, int length, String rating, int language_id){
+//        String actual = databaseProjectApplication.addFilm(saveFilm.getTitle(),saveFilm.getDescription(),saveFilm.getRelease_year(),saveFilm.getLength(),saveFilm.getRating(),saveFilm.getLanguage_id());
+//        ArgumentCaptor<Film>filmArgumentCaptor = ArgumentCaptor.forClass(Film.class);
+//        verify(filmRepository).save(filmArgumentCaptor.capture());
+//        filmArgumentCaptor.getValue();
+//        Assertions.assertEquals(expected,actual, "Data hasnt been added to mock DB");
+//    }
+
     @Test
-    public void testDeleteFilm(){
-        Film saveFilm = new Film("Test Name", "Description Test",2006, 1, "PG", 90);
-        String expected = "Saved";
-        //String addFilm(@RequestParam String title, String description, int release_year, int length, String rating, int language_id){
-        String actual = databaseProjectApplication.addFilm(saveFilm.getTitle(),saveFilm.getDescription(),saveFilm.getRelease_year(),saveFilm.getLength(),saveFilm.getRating(),saveFilm.getLanguage_id());
-        ArgumentCaptor<Film>filmArgumentCaptor = ArgumentCaptor.forClass(Film.class);
-        verify(filmRepository).save(filmArgumentCaptor.capture());
-        filmArgumentCaptor.getValue();
-        Assertions.assertEquals(expected,actual, "Data hasnt been added to mock DB");
+    public void testGetActor(){
+        Actor actor1 = new Actor("Actor","Test");
+        Actor actor2 = new Actor("Test","Actor");
+        List<Actor> actorList = new ArrayList<>();
+        actorList.add(actor1);
+        actorList.add(actor2);
+        when(databaseProjectApplication.getAllActors()).thenReturn(actorList);
+        Assertions.assertEquals(actorList,databaseProjectApplication.getAllActors(),"This test has not worked!");
+    }
+
+    @Test
+    public void testGetFilm(){
+        Film film1 = new Film("TestFilm");
+        Film film2 = new Film("FilmTest");
+        List<Film> filmList = new ArrayList<>();
+        filmList.add(film1);
+        filmList.add(film2);
+        when(databaseProjectApplication.getAllFilm()).thenReturn(filmList);
+        Assertions.assertEquals(filmList,databaseProjectApplication.getAllFilm(),"This test has not worked!");
     }
 
 }
