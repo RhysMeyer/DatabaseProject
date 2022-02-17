@@ -25,7 +25,7 @@ public class CityTest {
         Timestamp ts = new Timestamp(date.getTime());
         city = new City(1,"Test",2,ts);
         assertEquals(1,city.getCity_id());
-        assertEquals("test",city.getCity());
+        assertEquals("Test",city.getCity());
         assertEquals(2,city.getCountry_id());
         assertEquals(ts,city.getLast_update());
     }
