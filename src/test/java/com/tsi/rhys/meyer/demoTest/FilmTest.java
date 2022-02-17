@@ -23,28 +23,28 @@ public class FilmTest {
         assertEquals("test",film.getTitle());
     }
 
-    @Test
-    public void test_filmInstantiation2(){
-        film = new Film("test","desc",2000,2,"PG",1);
-        assertEquals("test",film.getTitle());
-        assertEquals("desc",film.getDescription());
-        assertEquals(2000,film.getRelease_year());
-        assertEquals(2,film.getLength());
-        assertEquals("PG",film.getRating());
-        assertEquals(1, film.getLanguage_id());
-    }
-
-    @Test
-    public void test_filmInstantiation3(){
-        film = new Film("test","desc",2000,2,"PG",1,"Trailers");
-        assertEquals("test",film.getTitle());
-        assertEquals("desc",film.getDescription());
-        assertEquals(2000,film.getRelease_year());
-        assertEquals(2,film.getLength());
-        assertEquals("PG",film.getRating());
-        assertEquals(1, film.getLanguage_id());
-        assertEquals("Trailers",film.getSpecial_features());
-    }
+//    @Test
+//    public void test_filmInstantiation2(){
+//        film = new Film("test","desc",2000,2,"PG",1);
+//        assertEquals("test",film.getTitle());
+//        assertEquals("desc",film.getDescription());
+//        assertEquals(2000,film.getRelease_year());
+//        assertEquals(2,film.getLength());
+//        assertEquals("PG",film.getRating());
+//        assertEquals(1, film.getLanguage_id());
+//    }
+//
+//    @Test
+//    public void test_filmInstantiation3(){
+//        film = new Film("test","desc",2000,2,"PG",1,"Trailers");
+//        assertEquals("test",film.getTitle());
+//        assertEquals("desc",film.getDescription());
+//        assertEquals(2000,film.getRelease_year());
+//        assertEquals(2,film.getLength());
+//        assertEquals("PG",film.getRating());
+//        assertEquals(1, film.getLanguage_id());
+//        assertEquals("Trailers",film.getSpecial_features());
+//    }
 
     @Test
     public void test_getFilmID(){
