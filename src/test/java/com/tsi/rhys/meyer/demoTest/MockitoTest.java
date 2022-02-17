@@ -2,6 +2,7 @@ package com.tsi.rhys.meyer.demoTest;
 
 import com.tsi.rhys.meyer.DatabaseProject.Actor.Actor;
 import com.tsi.rhys.meyer.DatabaseProject.Actor.ActorRepository;
+import com.tsi.rhys.meyer.DatabaseProject.Address.Address;
 import com.tsi.rhys.meyer.DatabaseProject.Address.AddressRepository;
 import com.tsi.rhys.meyer.DatabaseProject.City.CityRepository;
 import com.tsi.rhys.meyer.DatabaseProject.Country.Country;
@@ -87,6 +88,18 @@ public class MockitoTest {
 
     @Test
     public void testGetActor(){
+        Actor actor1 = new Actor("Actor","Test");
+        Actor actor2 = new Actor("Test","Actor");
+        List<Actor> actorList = new ArrayList<>();
+        actorList.add(actor1);
+        actorList.add(actor2);
+        when(databaseProjectApplication.getAllActors()).thenReturn(actorList);
+        Assertions.assertEquals(actorList,databaseProjectApplication.getAllActors(),"This test has not worked!");
+    }
+
+    @Test
+    public void testGetAddress(){
+        Address address1 = new Address();
         Actor actor1 = new Actor("Actor","Test");
         Actor actor2 = new Actor("Test","Actor");
         List<Actor> actorList = new ArrayList<>();
