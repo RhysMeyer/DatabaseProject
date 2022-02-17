@@ -1,8 +1,12 @@
 package com.tsi.rhys.meyer.demoTest;
 
+import com.tsi.rhys.meyer.DatabaseProject.Country.Country;
 import com.tsi.rhys.meyer.DatabaseProject.Film.Film;
 import com.tsi.rhys.meyer.DatabaseProject.Langauage.Language;
 import org.junit.jupiter.api.Test;
+
+import java.sql.Timestamp;
+import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -14,6 +18,12 @@ public class LanguageTest {
     @Test
     public void test_constructor(){
         assertTrue("Its not an instance of Language", language instanceof Language);
+    }
+
+    @Test
+    public void test_languageInstantiation(){
+        language = new Language("test");
+        assertEquals("test",language.getName());
     }
 
     @Test

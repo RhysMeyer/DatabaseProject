@@ -68,4 +68,10 @@ public class AddressTest {
         assertEquals(ts,address.getLast_update());
 
     }
+
+    @Test
+    public void test_getLocation(){
+        address.setAddress("Test Address");
+        assertEquals("Test Address", address.getAddress());
+    }
 }

@@ -1,6 +1,7 @@
 package com.tsi.rhys.meyer.demoTest;
 
 import com.tsi.rhys.meyer.DatabaseProject.City.City;
+import com.tsi.rhys.meyer.DatabaseProject.Langauage.Language;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Timestamp;
@@ -16,6 +17,16 @@ public class CityTest {
     @Test
     public void test_constructor(){
         assertTrue("Its not an instance of Actor", city instanceof City);
+    }
+
+    public void test_cityInstantiation(){
+        Date date = new Date();
+        Timestamp ts = new Timestamp(date.getTime());
+        city = new City(1,"Test",2,ts);
+        assertEquals(1,city.getCity_id());
+        assertEquals("test",city.getCity());
+        assertEquals(2,city.getCountry_id());
+        assertEquals(ts,city.getLast_update());
     }
 
     @Test
