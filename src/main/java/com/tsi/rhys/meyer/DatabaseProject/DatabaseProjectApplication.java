@@ -28,10 +28,7 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.model.ResourceNotFoundException;
 
 import java.sql.Timestamp;
-import java.util.Base64;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
 
 //@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 @SpringBootApplication
@@ -75,6 +72,7 @@ public class DatabaseProjectApplication {
 
 
 	////////////////////////ACTOR////////////////////////
+	@CrossOrigin(origins = "*")
 	@GetMapping("/AllActors")
 	public  @ResponseBody
 	Iterable<Actor> getAllActors(){
@@ -85,6 +83,60 @@ public class DatabaseProjectApplication {
 	public @ResponseBody
 	Optional<Actor> getActorID(@PathVariable("actor_id") int actorID) {
 		return actorRepository.	findById(actorID);
+	}
+
+	@CrossOrigin(origins = "*")
+	@GetMapping("get_actor")
+	public @ResponseBody
+	Iterable<Actor> getActor(@RequestParam(value = "id", required = false) Integer id,
+							 @RequestParam(value = "nameQuery", required = false) String actorQuery,
+							 @RequestParam(value = "film_id", required = false) Integer film_id)
+	{
+		Iterable<Actor> table;
+		if(id != null)
+		{
+			table = actorRepository.findAll();
+		}
+		else
+		{
+			table = actorRepository.findAll();
+		}
+
+		if(actorQuery != null)
+		{
+			actorQuery = actorQuery.toUpperCase();
+			Iterator<Actor> actorIt = table.iterator();
+			ArrayList<Actor> returnActors = new ArrayList<>();
+			while(actorIt.hasNext())
+			{
+				Actor a = actorIt.next();
+				if(a.getFirst_name().contains(actorQuery) || a.getLast_name().contains(actorQuery))
+				{
+					returnActors.add(a);
+				}
+			}
+			table = returnActors;
+		}
+		if(film_id != null)
+		{
+			Iterator<Film> filmIt = getFilms(film_id, null, null).iterator();
+			if(!filmIt.hasNext()) // No film of this id found
+			{
+				//throw new ResourceNotFoundException("Film of id " + film_id + " does not exist");
+			}
+			Film f = filmIt.next();
+			Set<Actor> actorFilms = f.getActor();
+			ArrayList<Actor> returnActors = new ArrayList<>();
+			for(Actor a : table)
+			{
+				if(actorFilms.contains(a))
+				{
+					returnActors.add(a);
+				}
+			}
+			table = returnActors;
+		}
+		return table;
 	}
 
 	////////////////////////Address////////////////////////
@@ -144,6 +196,7 @@ public class DatabaseProjectApplication {
 	Collection<Country> getCountryByID(){return countryRepository.findCountryByID();}
 
 	////////////////////////Film////////////////////////
+	@CrossOrigin(origins = "*")
 	@GetMapping("/AllFilm")
 	public  @ResponseBody
 	Iterable<Film> getAllFilm(){
@@ -156,16 +209,121 @@ public class DatabaseProjectApplication {
 		return filmRepository.findById(filmID);
 	}
 
-	@PostMapping("/addFilm")
-	public @ResponseBody String addFilm(@RequestParam String title, String description, int release_year, int length, String rating, int language_id){
-		Film addFilm = new Film(title, description, release_year, length, rating, language_id);
-		//Film addFilm = new Film();
+//	//@PostMapping("/addFilm")
+//	@RequestMapping(path="/addFilm", method = RequestMethod.POST)
+//	public @ResponseBody String addFilm (@RequestParam String title,
+//	@RequestParam String description,
+//	@RequestParam int language_id,
+//	@RequestParam(value = "original_language_id", required = false) Integer original_language_id,
+//	@RequestParam int rental_duration,
+//	@RequestParam float rental_rate,
+//	@RequestParam(value = "length", required = false) Integer length,
+//	@RequestParam float replacement_cost,
+//	@RequestParam String rating){//Film addFilm = new Film(title, description, release_year, length, rating, language_id);
+//		Film addFilm = new Film();
+//		filmRepository.save(addFilm);
+//		return "Saved";
+//	}
+
+	@CrossOrigin(origins = "*")
+	@PostMapping("/Film/Add")
+	public @ResponseBody
+	String addFilm(@RequestParam String title, String description, int release_year, int length, String rating, int language_id, String special_features,  int rental_duration, float replacement_cost) {
+		Film addFilm = new Film(title, description, release_year, length, rating, language_id, special_features, rental_duration, replacement_cost);
 		filmRepository.save(addFilm);
-		return "Saved";
+		return "save";
+	}
+	@CrossOrigin(origins = "*")
+	@PutMapping("/Film/Update")
+	public @ResponseBody
+	String updateFilm(@RequestParam int film_id, String title, String description, int release_year, int length, String rating, int language_id, String special_features,  int rental_duration, float replacement_cost) {
+		Optional<Film> updatedFilm = filmRepository.findById(film_id);
+		try {
+			updatedFilm = filmRepository.findById(film_id);
+		} catch (Exception e) {
+
+		}
+		updatedFilm.get().setTitle(title);
+		updatedFilm.get().setTitle(title);
+		updatedFilm.get().setDescription(description);
+		updatedFilm.get().setRelease_year(release_year);
+		updatedFilm.get().setLength(length);
+		updatedFilm.get().setRating(rating);
+		updatedFilm.get().setLanguage_id(language_id);
+		updatedFilm.get().setSpecial_features(special_features);
+		updatedFilm.get().setRental_duration(rental_duration);
+		updatedFilm.get().setReplacement_cost(replacement_cost);
+		//Film addFilm = new Film(title, description, release_year, length, rating, language_id, special_features, rental_duration, replacement_cost);
+
+		filmRepository.save(updatedFilm.get());
+		return "save";
 	}
 
 
-	@DeleteMapping("/removeFilm")
+
+	@CrossOrigin(origins = "*")
+	@GetMapping("get_film")
+	public @ResponseBody
+	Iterable<Film> getFilms
+			(
+					@RequestParam(value = "id", required = false) Integer id,
+					@RequestParam(value = "titleQuery", required = false) String titleQuery,
+					@RequestParam(value = "actor_id", required = false) Integer actor_id
+			)
+	{
+		Iterable<Film> table;
+		// Get the film with the given id
+		if(id != null)
+		{
+//			table = filmRepository.getAllFilmsById(id);
+			table = filmRepository.findAll();
+		}
+		else
+		{
+			table = filmRepository.findAll();
+		}
+
+		// Make the table only contain films that fit the title query
+		if(titleQuery != null)
+		{
+			titleQuery = titleQuery.toUpperCase();
+			Iterator<Film> filmIt = table.iterator();
+			ArrayList<Film> returnFilms = new ArrayList<>();
+			while(filmIt.hasNext())
+			{
+				Film f = filmIt.next();
+				if(f.getTitle().contains(titleQuery))
+				{
+					returnFilms.add(f);
+				}
+			}
+			table = returnFilms;
+		}
+
+		if(actor_id != null)
+		{
+			Iterator<Actor> actorIt = getActor(actor_id, null, null).iterator();
+			if(!actorIt.hasNext()) // No actor of this id found
+			{
+				//throw new ResourceNotFoundException("Actor of id " + actor_id + " does not exist");
+			}
+			Actor a = actorIt.next();
+			Set<Film> actorFilms = a.getFilms();
+			ArrayList<Film> returnFilms = new ArrayList<>();
+			for(Film f : table)
+			{
+				if(actorFilms.contains(f)) {
+					returnFilms.add(f);
+				}
+			}
+			table = returnFilms;
+		}
+		return table;
+	}
+
+
+	@CrossOrigin(origins = "*")
+	@DeleteMapping("/Film/Delete")
 	public @ResponseBody String deleteFilms(@RequestParam int id)
 	{
 		filmRepository.findById(id).orElseThrow();
@@ -173,15 +331,15 @@ public class DatabaseProjectApplication {
 		return "Deleted";
 	}
 
-//	@PostMapping("/addFilm")
-//	public @ResponseBody String addFilm(@RequestParam String title) {
-//		Date date = new Date();
-//		Film addCountry = new Film(title);
-//		filmRepository.save(addCountry);
-//		return "Saved";
-//
-//	}
+	@PostMapping("/addFilm")
+	public @ResponseBody String addFilm(@RequestParam String title) {
+		Date date = new Date();
+		Film addFilm = new Film(title);
+		addFilm.setLanguage_id(1);
+		filmRepository.save(addFilm);
+		return "Saved";
 
+	}
 
 
 	////////////////////////Language////////////////////////

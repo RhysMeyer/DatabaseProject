@@ -1,10 +1,11 @@
 package com.tsi.rhys.meyer.DatabaseProject.Film;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.tsi.rhys.meyer.DatabaseProject.Actor.Actor;
+
+import javax.persistence.*;
 import java.time.Year;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Film {
@@ -24,6 +25,16 @@ public class Film {
     private String rating;
     private String special_features;
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "film_actor",
+            joinColumns = {
+                    @JoinColumn(name = "film_id", referencedColumnName = "film_id",
+                            nullable = false, updatable = false)},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "actor_id", referencedColumnName = "actor_id",
+                            nullable = false, updatable = false)})
+    private Set<Actor> actor = new HashSet<>();
+
 //    public Film(int film_id, String title, String description, Year release_year, int language_id, int original_language_id, int rental_duration, double rental_rate, int length, double replacement_cost) {
 //        this.film_id = film_id;
 //        this.title = title;
@@ -42,7 +53,7 @@ public class Film {
     public Film()
     {}
 
-    public Film(String title, String description, int release_year, int length, String rating, int language_id) {
+    public Film(String title, String description, int release_year, int length, String rating, int language_id, String special_features, int rental_duration, float replacement_cost) {
 
         this.title = title;
         this.description = description;
@@ -70,6 +81,21 @@ public class Film {
         this.title = title;
     }
 
+    public Film(int id, String title, String description, int release_year, int length, String rating, int language_id,String special_features ) {
+
+        this.film_id = id;
+        this.title = title;
+        this.description = description;
+        this.release_year = release_year;
+        this.length = length;
+        this.rating = rating;
+        this.language_id = language_id;
+        this.special_features = special_features;
+
+    }
+
+    public Film(String test, String desc, int i, int i1, String pg, int i2) {
+    }
 
 
     public int getFilm_id() {
@@ -165,6 +191,11 @@ public class Film {
 
     public void setSpecial_features(String special_features) {
         this.special_features = special_features;
+    }
+
+    public Set<Actor> getActor()
+    {
+        return actor;
     }
 
 
