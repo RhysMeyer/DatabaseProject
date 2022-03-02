@@ -5,12 +5,12 @@ import com.amazonaws.services.secretsmanager.AWSSecretsManagerClientBuilder;
 import com.amazonaws.services.secretsmanager.model.*;
 import com.tsi.rhys.meyer.DatabaseProject.Actor.Actor;
 import com.tsi.rhys.meyer.DatabaseProject.Actor.ActorRepository;
-import com.tsi.rhys.meyer.DatabaseProject.Address.Address;
-import com.tsi.rhys.meyer.DatabaseProject.Address.AddressRepository;
-import com.tsi.rhys.meyer.DatabaseProject.City.City;
-import com.tsi.rhys.meyer.DatabaseProject.City.CityRepository;
-import com.tsi.rhys.meyer.DatabaseProject.Country.Country;
-import com.tsi.rhys.meyer.DatabaseProject.Country.CountryRepository;
+//import com.tsi.rhys.meyer.DatabaseProject.Address.Address;
+//import com.tsi.rhys.meyer.DatabaseProject.Address.AddressRepository;
+//import com.tsi.rhys.meyer.DatabaseProject.City.City;
+//import com.tsi.rhys.meyer.DatabaseProject.City.CityRepository;
+//import com.tsi.rhys.meyer.DatabaseProject.Country.Country;
+//import com.tsi.rhys.meyer.DatabaseProject.Country.CountryRepository;
 import com.tsi.rhys.meyer.DatabaseProject.Film.Film;
 import com.tsi.rhys.meyer.DatabaseProject.Film.FilmRepository;
 import com.tsi.rhys.meyer.DatabaseProject.Langauage.Language;
@@ -40,26 +40,32 @@ public class DatabaseProjectApplication {
 	private LanguageRepository languageRepository;
 	@Autowired
 	private ActorRepository actorRepository;
-	@Autowired
-	private AddressRepository addressRepository;
-	@Autowired
-	private CityRepository cityRepository;
-	@Autowired
-	private CountryRepository countryRepository;
+//	@Autowired
+//	private AddressRepository addressRepository;
+//	@Autowired
+//	private CityRepository cityRepository;
+//	@Autowired
+//	private CountryRepository countryRepository;
 	@Autowired
 	private FilmRepository filmRepository;
 //	@Autowired
 //	private StoreRepository storeRepository;
 
-	public DatabaseProjectApplication(LanguageRepository languageRepository, ActorRepository actorRepository, AddressRepository addressRepository,
-		CityRepository cityRepository, CountryRepository countryRepository, FilmRepository filmRepository){
+//	public DatabaseProjectApplication(LanguageRepository languageRepository, ActorRepository actorRepository, AddressRepository addressRepository,
+//		CityRepository cityRepository, CountryRepository countryRepository, FilmRepository filmRepository){
+//		this.languageRepository = languageRepository;
+//		this.actorRepository = actorRepository;
+//		this.addressRepository = addressRepository;
+//		this.cityRepository = cityRepository;
+//		this.countryRepository = countryRepository;
+//		this.filmRepository = filmRepository;
+////		this.storeRepository = storeRepository;
+//	}
+
+	public DatabaseProjectApplication(LanguageRepository languageRepository, ActorRepository actorRepository, FilmRepository filmRepository){
 		this.languageRepository = languageRepository;
 		this.actorRepository = actorRepository;
-		this.addressRepository = addressRepository;
-		this.cityRepository = cityRepository;
-		this.countryRepository = countryRepository;
 		this.filmRepository = filmRepository;
-//		this.storeRepository = storeRepository;
 	}
 
 //	public DatabaseProjectApplication(LanguageRepository languageRepository, ActorRepository actorRepository){
@@ -140,61 +146,61 @@ public class DatabaseProjectApplication {
 	}
 
 	////////////////////////Address////////////////////////
-	@GetMapping("/AllAddress")
-	public  @ResponseBody
-	Iterable<Address> getAllAddress(){
-		return addressRepository.findAll();
-	}
-
-	@RequestMapping(value="/address/{address_id}", method = RequestMethod.GET)
-	public @ResponseBody
-	Optional<Address> getAddressID(@PathVariable("address_id") int addressID) {
-		return addressRepository.findById(addressID);
-	}
-
-	////////////////////////City////////////////////////
-	@GetMapping("/AllCities")
-	public  @ResponseBody
-	Iterable<City> getAllCity(){
-		return cityRepository.findAll();
-	}
-
-	@RequestMapping(value="/city/{city_id}", method = RequestMethod.GET)
-	public @ResponseBody
-	Optional<City> getCityID(@PathVariable("city_id") int cityID) {
-		return cityRepository.findById(cityID);
-	}
-
-	////////////////////////Country////////////////////////
-
-	@GetMapping("/AllCountry")
-	public  @ResponseBody
-	Iterable<Country> getAllCountry(){
-		return countryRepository.findAll();
-	}
-
-	@RequestMapping(value="/country/{country_id}", method = RequestMethod.GET)
-	public @ResponseBody
-	Optional<Country> getCountryID(@PathVariable("country_id") int countryID) {
-		return countryRepository.findById(countryID);
-	}
-
-	@PostMapping("/addCountry")
-	public @ResponseBody String addCountry (@RequestParam String country) {
-		Date date = new Date();
-		Country addCountry = new Country(country, new Timestamp(date.getTime()));
-		countryRepository.save(addCountry);
-		return "Saved";
-
-	}
-
-//	@Query("from Auction a join a.category c where c.name=:categoryName")
-//	public Iterable<Country> findByCategory(@Param("categoryName") String categoryName);
-
-	@GetMapping("/Country")
-	public @ResponseBody
-	Collection<Country> getCountryByID(){return countryRepository.findCountryByID();}
-
+//	@GetMapping("/AllAddress")
+//	public  @ResponseBody
+//	Iterable<Address> getAllAddress(){
+//		return addressRepository.findAll();
+//	}
+//
+//	@RequestMapping(value="/address/{address_id}", method = RequestMethod.GET)
+//	public @ResponseBody
+//	Optional<Address> getAddressID(@PathVariable("address_id") int addressID) {
+//		return addressRepository.findById(addressID);
+//	}
+//
+//	////////////////////////City////////////////////////
+//	@GetMapping("/AllCities")
+//	public  @ResponseBody
+//	Iterable<City> getAllCity(){
+//		return cityRepository.findAll();
+//	}
+//
+//	@RequestMapping(value="/city/{city_id}", method = RequestMethod.GET)
+//	public @ResponseBody
+//	Optional<City> getCityID(@PathVariable("city_id") int cityID) {
+//		return cityRepository.findById(cityID);
+//	}
+//
+//	////////////////////////Country////////////////////////
+//
+//	@GetMapping("/AllCountry")
+//	public  @ResponseBody
+//	Iterable<Country> getAllCountry(){
+//		return countryRepository.findAll();
+//	}
+//
+//	@RequestMapping(value="/country/{country_id}", method = RequestMethod.GET)
+//	public @ResponseBody
+//	Optional<Country> getCountryID(@PathVariable("country_id") int countryID) {
+//		return countryRepository.findById(countryID);
+//	}
+//
+//	@PostMapping("/addCountry")
+//	public @ResponseBody String addCountry (@RequestParam String country) {
+//		Date date = new Date();
+//		Country addCountry = new Country(country, new Timestamp(date.getTime()));
+//		countryRepository.save(addCountry);
+//		return "Saved";
+//
+//	}
+//
+////	@Query("from Auction a join a.category c where c.name=:categoryName")
+////	public Iterable<Country> findByCategory(@Param("categoryName") String categoryName);
+//
+//	@GetMapping("/Country")
+//	public @ResponseBody
+//	Collection<Country> getCountryByID(){return countryRepository.findCountryByID();}
+//
 	////////////////////////Film////////////////////////
 	@CrossOrigin(origins = "*")
 	@GetMapping("/AllFilm")

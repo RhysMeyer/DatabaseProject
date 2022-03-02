@@ -2,11 +2,11 @@ package com.tsi.rhys.meyer.demoTest;
 
 import com.tsi.rhys.meyer.DatabaseProject.Actor.Actor;
 import com.tsi.rhys.meyer.DatabaseProject.Actor.ActorRepository;
-import com.tsi.rhys.meyer.DatabaseProject.Address.Address;
-import com.tsi.rhys.meyer.DatabaseProject.Address.AddressRepository;
-import com.tsi.rhys.meyer.DatabaseProject.City.CityRepository;
-import com.tsi.rhys.meyer.DatabaseProject.Country.Country;
-import com.tsi.rhys.meyer.DatabaseProject.Country.CountryRepository;
+//import com.tsi.rhys.meyer.DatabaseProject.Address.Address;
+//import com.tsi.rhys.meyer.DatabaseProject.Address.AddressRepository;
+//import com.tsi.rhys.meyer.DatabaseProject.City.CityRepository;
+//import com.tsi.rhys.meyer.DatabaseProject.Country.Country;
+//import com.tsi.rhys.meyer.DatabaseProject.Country.CountryRepository;
 import com.tsi.rhys.meyer.DatabaseProject.DatabaseProjectApplication;
 import com.tsi.rhys.meyer.DatabaseProject.Film.Film;
 import com.tsi.rhys.meyer.DatabaseProject.Film.FilmRepository;
@@ -35,32 +35,37 @@ public class MockitoTest {
     private LanguageRepository languageRepository; // creating a fake version of the langRepo
     @Mock
     private ActorRepository actorRepository;
-    @Mock
-    private AddressRepository addressRepository;
-    @Mock
-    private CityRepository cityRepository;
-    @Mock
-    private CountryRepository countryRepository;
+//    @Mock
+//    private AddressRepository addressRepository;
+//    @Mock
+//    private CityRepository cityRepository;
+//    @Mock
+//    private CountryRepository countryRepository;
 //    @Mock
 //    private StoreRepository storeRepository;
     @Mock
     private FilmRepository filmRepository;
 
+//    @BeforeEach
+//    void Setup(){
+//        databaseProjectApplication = new DatabaseProjectApplication(languageRepository,actorRepository,addressRepository,cityRepository,countryRepository,filmRepository);
+//    }
+
     @BeforeEach
     void Setup(){
-        databaseProjectApplication = new DatabaseProjectApplication(languageRepository,actorRepository,addressRepository,cityRepository,countryRepository,filmRepository);
+        databaseProjectApplication = new DatabaseProjectApplication(languageRepository,actorRepository,filmRepository);
     }
 
-    @Test
-    public void testAddCountry(){
-        Country saveCountry = new Country("Test Name");
-        String expected = "Saved";
-        String actual = databaseProjectApplication.addCountry(saveCountry.getCountry());
-        ArgumentCaptor<Country>countryArgumentCaptor = ArgumentCaptor.forClass(Country.class);
-        verify(countryRepository).save(countryArgumentCaptor.capture());
-        countryArgumentCaptor.getValue();
-        Assertions.assertEquals(expected,actual, "Data hasnt been added to mock DB");
-    }
+//    @Test
+//    public void testAddCountry(){
+//        Country saveCountry = new Country("Test Name");
+//        String expected = "Saved";
+//        String actual = databaseProjectApplication.addCountry(saveCountry.getCountry());
+//        ArgumentCaptor<Country>countryArgumentCaptor = ArgumentCaptor.forClass(Country.class);
+//        verify(countryRepository).save(countryArgumentCaptor.capture());
+//        countryArgumentCaptor.getValue();
+//        Assertions.assertEquals(expected,actual, "Data hasnt been added to mock DB");
+//    }
 
 //    @Test
 //    public void testAddFilm(){
@@ -97,17 +102,17 @@ public class MockitoTest {
         Assertions.assertEquals(actorList,databaseProjectApplication.getAllActors(),"This test has not worked!");
     }
 
-    @Test
-    public void testGetAddress(){
-        Address address1 = new Address();
-        Actor actor1 = new Actor("Actor","Test");
-        Actor actor2 = new Actor("Test","Actor");
-        List<Actor> actorList = new ArrayList<>();
-        actorList.add(actor1);
-        actorList.add(actor2);
-        when(databaseProjectApplication.getAllActors()).thenReturn(actorList);
-        Assertions.assertEquals(actorList,databaseProjectApplication.getAllActors(),"This test has not worked!");
-    }
+//    @Test
+//    public void testGetAddress(){
+//        Address address1 = new Address();
+//        Actor actor1 = new Actor("Actor","Test");
+//        Actor actor2 = new Actor("Test","Actor");
+//        List<Actor> actorList = new ArrayList<>();
+//        actorList.add(actor1);
+//        actorList.add(actor2);
+//        when(databaseProjectApplication.getAllActors()).thenReturn(actorList);
+//        Assertions.assertEquals(actorList,databaseProjectApplication.getAllActors(),"This test has not worked!");
+//    }
 
     @Test
     public void testGetFilm(){

@@ -26,13 +26,13 @@ public class ActorTest {
 
     @Test
     public void test_actorInstantiation(){
-        Date date = new Date();
-        Timestamp ts = new Timestamp(date.getTime());
-        actor = new Actor(1,"Tested","Name",ts);
+//        Date date = new Date();
+//        Timestamp ts = new Timestamp(date.getTime());
+        actor = new Actor(1,"Tested","Name");
         assertEquals("Tested", actor.getFirst_name());
         assertEquals("Name", actor.getLast_name());
         assertEquals(1,actor.getActor_id());
-        assertEquals(ts,actor.getLast_update());
+//        assertEquals(ts,actor.getLast_update());
     }
 
     @Test
@@ -55,12 +55,12 @@ public class ActorTest {
     }
 
 
-    @Test
-    public void test_setTimeStamp(){
-        Date date = new Date();
-        Timestamp ts = new Timestamp(date.getTime());
-        actor.setLast_update(ts);
-        assertEquals(ts,actor.getLast_update());
-
-    }
+//    @Test
+//    public void test_setTimeStamp(){
+//        Date date = new Date();
+//        Timestamp ts = new Timestamp(date.getTime());
+//        actor.setLast_update(ts);
+//        assertEquals(ts,actor.getLast_update());
+//
+//    }
 }
