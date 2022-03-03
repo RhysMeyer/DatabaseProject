@@ -35,25 +35,24 @@ public class Film {
                             nullable = false, updatable = false)})
     private Set<Actor> actor = new HashSet<>();
 
-//    public Film(int film_id, String title, String description, Year release_year, int language_id, int original_language_id, int rental_duration, double rental_rate, int length, double replacement_cost) {
-//        this.film_id = film_id;
-//        this.title = title;
-//        this.description = description;
-//        this.release_year = release_year;
-//        this.language_id = language_id;
-//        this.original_language_id = original_language_id;
-//        this.rental_duration = rental_duration;
-//        this.rental_rate = rental_rate;
-//        this.length = length;
-//        this.replacement_cost = replacement_cost;
-//        this.rating = rating;
-//        this.special_features = special_features;
-//    }
+    public Film(int film_id, String title, String description, int release_year, int language_id, int rental_duration, double rental_rate, int length, double replacement_cost, String rating, String special_features) {
+        this.film_id = film_id;
+        this.title = title;
+        this.description = description;
+        this.release_year = release_year;
+        this.language_id = language_id;
+        this.rental_duration = rental_duration;
+        this.rental_rate = rental_rate;
+        this.length = length;
+        this.replacement_cost = replacement_cost;
+        this.rating = rating;
+        this.special_features = special_features;
+    }
 
     public Film()
     {}
 
-    public Film(String title, String description, int release_year, int length, String rating, int language_id, String special_features, int rental_duration, float replacement_cost) {
+    public Film(String title, String description, int release_year, int length, String rating, int language_id, String special_features, int rental_duration, double replacement_cost) {
 
         this.title = title;
         this.description = description;

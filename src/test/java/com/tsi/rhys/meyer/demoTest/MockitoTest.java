@@ -19,17 +19,27 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import static org.hamcrest.Matchers.equalTo;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)//inhereting characteristics needed to use mockito
 public class MockitoTest {
 
     private DatabaseProjectApplication databaseProjectApplication;
+    MockMvc mockMvc;
 
     @Mock
     private LanguageRepository languageRepository; // creating a fake version of the langRepo
@@ -79,17 +89,53 @@ public class MockitoTest {
 //        Assertions.assertEquals(expected,actual, "Data hasnt been added to mock DB");
  //   }
 
+    @Test
+    public void testGetFilm(){
+        Film film1 = new Film("TestFilm");
+        Film film2 = new Film("FilmTest");
+        List<Film> filmList = new ArrayList<>();
+        filmList.add(film1);
+        filmList.add(film2);
+        when(databaseProjectApplication.getAllFilm()).thenReturn(filmList);
+        Assertions.assertEquals(filmList,databaseProjectApplication.getAllFilm(),"This test has not worked!");
+    }
+
+    @Test
+    public void testAddFilm()
+    {
+        Film film = new Film(1,"Title","Desc",2000,1,100,9.99,10,9.99,"PG","Trailers");
+        String expected = "save"; //String special_features,  int rental_duration, double replacement_cost
+        String actual = databaseProjectApplication.addFilm(film.getTitle(), film.getDescription(), film.getRelease_year(),film.getLength(), film.getRating(), film.getLanguage_id(),film.getSpecial_features(),film.getRental_duration(),film.getReplacement_cost());
+        ArgumentCaptor<Film>filmArgumentCaptor = ArgumentCaptor.forClass(Film.class);
+        verify(filmRepository).save(filmArgumentCaptor.capture());
+        filmArgumentCaptor.getValue();
+        Assertions.assertEquals(expected,actual,"Data hasn't been entered into the mock database (Film)");
+    }
+
 //    @Test
-//    public void testDeleteFilm(){
-//        Film saveFilm = new Film("Test Name", "Description Test",2006, 1, "PG", 90);
-//        String expected = "Saved";
-//        //String addFilm(@RequestParam String title, String description, int release_year, int length, String rating, int language_id){
-//        String actual = databaseProjectApplication.addFilm(saveFilm.getTitle(),saveFilm.getDescription(),saveFilm.getRelease_year(),saveFilm.getLength(),saveFilm.getRating(),saveFilm.getLanguage_id());
-//        ArgumentCaptor<Film>filmArgumentCaptor = ArgumentCaptor.forClass(Film.class);
+//    void testUpdateFilm() throws Exception {
+//        Film film1 = new Film(1,"Title","Desc",2000,1,100,9.99,10,9.99,"PG","Trailers");
+//        Film film2 = new Film(1,"Title","Desc",2000,1,100,9.99,10,9.99,"PG","Trailers");
+//        Film film = databaseProjectApplication.getFilmID(1);
+//        //film_id, String title, String description, int release_year, int length, String rating, int language_id, String special_features,  int rental_duration, float replacement_cost) {
+//        String actual = databaseProjectApplication.updateFilm(film.getFilm_id(),"Updated",film.getDescription(),film.getRelease_year(),film.getLength(),film.getRating(),film.getLanguage_id(),film.getSpecial_features(),film.getRental_duration(),film.getReplacement_cost());
+//        String expected = "deleted";
+//        ArgumentCaptor<Film> filmArgumentCaptor = ArgumentCaptor.forClass(Film.class);
 //        verify(filmRepository).save(filmArgumentCaptor.capture());
 //        filmArgumentCaptor.getValue();
-//        Assertions.assertEquals(expected,actual, "Data hasnt been added to mock DB");
+//        Assertions.assertEquals(expected,actual,"Data hasn't been entered into the mock database (Film)");
+//
 //    }
+
+    @Test
+    void testDeleteFilm(){
+        String actual = databaseProjectApplication.deleteFilm(1);
+        String expected = "deleted";
+        ArgumentCaptor<Integer> filmArgumentCaptor = ArgumentCaptor.forClass(Integer.class);
+        verify(filmRepository).deleteById(filmArgumentCaptor.capture());
+        filmArgumentCaptor.getValue();
+        Assertions.assertEquals(expected, actual, "The specified category was not successfully deleted.");
+    }
 
     @Test
     public void testGetActor(){
@@ -114,15 +160,6 @@ public class MockitoTest {
 //        Assertions.assertEquals(actorList,databaseProjectApplication.getAllActors(),"This test has not worked!");
 //    }
 
-    @Test
-    public void testGetFilm(){
-        Film film1 = new Film("TestFilm");
-        Film film2 = new Film("FilmTest");
-        List<Film> filmList = new ArrayList<>();
-        filmList.add(film1);
-        filmList.add(film2);
-        when(databaseProjectApplication.getAllFilm()).thenReturn(filmList);
-        Assertions.assertEquals(filmList,databaseProjectApplication.getAllFilm(),"This test has not worked!");
-    }
+
 
 }
