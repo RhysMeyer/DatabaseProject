@@ -51,7 +51,7 @@ public class Film implements Serializable {
     public Film()
     {}
 
-    public Film(String title, String description, int release_year, int length, String rating, int language_id) {
+    public Film(String title, String description, int release_year, int length, String rating, int language_id, String special_features, int rental_duration, double replacement_cost) {
 
         this.title = title;
         this.description = description;
@@ -59,6 +59,9 @@ public class Film implements Serializable {
         this.length = length;
         this.rating = rating;
         this.language_id = language_id;
+        this.special_features = special_features;
+        this.rental_duration = rental_duration;
+        this.replacement_cost = replacement_cost;
 
     }
     public Film(String title, String description, int release_year, int length, String rating, int language_id,String special_features ) {
@@ -89,6 +92,7 @@ public class Film implements Serializable {
         this.special_features = special_features;
 
     }
+
 
     public int getFilm_id() {
         return film_id;
