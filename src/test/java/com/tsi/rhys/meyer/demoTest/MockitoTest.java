@@ -90,7 +90,7 @@ public class MockitoTest {
  //   }
 
     @Test
-    public void testGetFilm(){
+    void testGetFilm(){
         Film film1 = new Film("TestFilm");
         Film film2 = new Film("FilmTest");
         List<Film> filmList = new ArrayList<>();
@@ -101,7 +101,7 @@ public class MockitoTest {
     }
 
     @Test
-    public void testAddFilm()
+    void testAddFilm()
     {
         Film film = new Film(1,"Title","Desc",2000,1,100,9.99,10,9.99,"PG","Trailers");
         String expected = "save"; //String special_features,  int rental_duration, double replacement_cost
@@ -138,7 +138,7 @@ public class MockitoTest {
     }
 
     @Test
-    public void testGetActor(){
+    void testGetActor(){
         Actor actor1 = new Actor("Actor","Test");
         Actor actor2 = new Actor("Test","Actor");
         List<Actor> actorList = new ArrayList<>();

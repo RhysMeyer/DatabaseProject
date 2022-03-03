@@ -9,23 +9,23 @@ import java.util.Date;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class ActorTest {
+class ActorTest {
 
     private Actor actor = new Actor();
 
     @Test
-    public void test_constructor(){
+    void test_constructor(){
         assertTrue("Its not an instance of Actor", actor instanceof Actor);
     }
 
     @Test
-    public void test_getFirstName(){
+    void test_getFirstName(){
         actor.setFirst_name("Test");
         assertEquals("Test", actor.getFirst_name());
     }
 
     @Test
-    public void test_actorInstantiation(){
+    void test_actorInstantiation(){
 //        Date date = new Date();
 //        Timestamp ts = new Timestamp(date.getTime());
         actor = new Actor(1,"Tested","Name");
@@ -36,20 +36,20 @@ public class ActorTest {
     }
 
     @Test
-    public void test_actorInstantiation2(){
+    void test_actorInstantiation2(){
         actor = new Actor("Test","Name");
         assertEquals("Test", actor.getFirst_name());
         assertEquals("Name", actor.getLast_name());
     }
 //????
     @Test
-    public void test_getLastName(){
+    void test_getLastName(){
         actor.setLast_name("Name");
         assertEquals("Name", actor.getLast_name());
     }
 
     @Test
-    public void test_getID(){
+    void test_getID(){
         actor.setActor_id(100);
         assertEquals(100,actor.getActor_id());
     }
