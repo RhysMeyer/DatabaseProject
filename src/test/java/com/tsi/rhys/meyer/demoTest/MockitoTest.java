@@ -175,7 +175,7 @@ class MockitoTest {
         languageList.add(l1);
         languageList.add(l2);
         when(databaseProjectApplication.getAllLanguages()).thenReturn(languageList);
-        Assertions.assertEquals(languageList,databaseProjectApplication.getAllActors(),"This test has not worked!");
+        Assertions.assertEquals(languageList,databaseProjectApplication.getAllLanguages(),"This test has not worked!");
     }
 
     @Test
