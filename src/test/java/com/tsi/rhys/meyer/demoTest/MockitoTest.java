@@ -36,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)//inhereting characteristics needed to use mockito
-public class MockitoTest {
+class MockitoTest {
 
     private DatabaseProjectApplication databaseProjectApplication;
     MockMvc mockMvc;
