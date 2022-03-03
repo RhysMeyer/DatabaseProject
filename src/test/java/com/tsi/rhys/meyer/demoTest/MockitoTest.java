@@ -10,6 +10,7 @@ import com.tsi.rhys.meyer.DatabaseProject.Actor.ActorRepository;
 import com.tsi.rhys.meyer.DatabaseProject.DatabaseProjectApplication;
 import com.tsi.rhys.meyer.DatabaseProject.Film.Film;
 import com.tsi.rhys.meyer.DatabaseProject.Film.FilmRepository;
+import com.tsi.rhys.meyer.DatabaseProject.Langauage.Language;
 import com.tsi.rhys.meyer.DatabaseProject.Langauage.LanguageRepository;
 //import com.tsi.rhys.meyer.DatabaseProject.Store.StoreRepository;
 import org.junit.jupiter.api.Assertions;
@@ -101,6 +102,13 @@ class MockitoTest {
     }
 
     @Test
+    void testGetFilmById(){
+        Film film1 = new Film("TestFilm");
+        when(databaseProjectApplication.getFilmID(0)).thenReturn(Optional.of(film1));
+        Assertions.assertEquals(film1,databaseProjectApplication.getFilmID(0).get(),"This test has not worked!");
+    }
+
+    @Test
     void testAddFilm()
     {
         Film film = new Film(1,"Title","Desc",2000,1,100,9.99,10,9.99,"PG","Trailers");
@@ -116,7 +124,11 @@ class MockitoTest {
 //    void testUpdateFilm() throws Exception {
 //        Film film1 = new Film(1,"Title","Desc",2000,1,100,9.99,10,9.99,"PG","Trailers");
 //        Film film2 = new Film(1,"Title","Desc",2000,1,100,9.99,10,9.99,"PG","Trailers");
-//        Film film = databaseProjectApplication.getFilmID(1);
+////        when(databaseProjectApplication.getFilmID(1).orElseThrow().get()).thenReturn(film1);
+//        when(databaseProjectApplication.getFilmID(0)).thenReturn(Optional.of(film1));
+//        Film film = databaseProjectApplication.getFilmID(0).get();
+//
+//
 //        //film_id, String title, String description, int release_year, int length, String rating, int language_id, String special_features,  int rental_duration, float replacement_cost) {
 //        String actual = databaseProjectApplication.updateFilm(film.getFilm_id(),"Updated",film.getDescription(),film.getRelease_year(),film.getLength(),film.getRating(),film.getLanguage_id(),film.getSpecial_features(),film.getRental_duration(),film.getReplacement_cost());
 //        String expected = "deleted";
@@ -146,6 +158,31 @@ class MockitoTest {
         actorList.add(actor2);
         when(databaseProjectApplication.getAllActors()).thenReturn(actorList);
         Assertions.assertEquals(actorList,databaseProjectApplication.getAllActors(),"This test has not worked!");
+    }
+
+    @Test
+    void testGetActorById(){
+        Actor actor1 = new Actor("Actor","Test");
+        when(databaseProjectApplication.getActorID(0)).thenReturn(Optional.of(actor1));
+        Assertions.assertEquals(actor1,databaseProjectApplication.getActorID(0).get(),"This test has not worked!");
+    }
+
+    @Test
+    void testGetLanguage(){
+        Language l1 = new Language("English");
+        Language l2 = new Language("French");
+        List<Language> languageList = new ArrayList<>();
+        languageList.add(l1);
+        languageList.add(l2);
+        when(databaseProjectApplication.getAllLanguages()).thenReturn(languageList);
+        Assertions.assertEquals(languageList,databaseProjectApplication.getAllActors(),"This test has not worked!");
+    }
+
+    @Test
+    void testGetLanguageById(){
+        Language l1 = new Language("English");
+        when(databaseProjectApplication.getLanguageID(0)).thenReturn(Optional.of(l1));
+        Assertions.assertEquals(l1,databaseProjectApplication.getLanguageID(0).get(),"This test has not worked!");
     }
 
 //    @Test
