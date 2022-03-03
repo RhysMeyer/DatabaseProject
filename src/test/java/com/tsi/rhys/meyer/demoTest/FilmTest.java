@@ -82,11 +82,11 @@ public class FilmTest {
         assertEquals(2, film.getRental_duration());
     }
 
-//    @Test
-//    public void test_getRentalRate(){
-//        film.setRental_rate(10.0f);
-//        assertEquals(10.0f, film.getRental_rate());
-//    }
+    @Test
+    public void test_getRentalRate(){
+        film.setRental_rate((double)10.00);
+        assertEquals((double)10.00, film.getRental_rate());
+    }
 
     @Test
     public void test_getLength(){
@@ -96,8 +96,8 @@ public class FilmTest {
 
 //    @Test
 //    public void test_getReplacementCost(){
-//        film.setReplacement_cost(20.23f);
-//        assertEquals(20.23f, film.getReplacement_cost());
+//        film.setReplacement_cost((double)20.23);
+//        assertEquals((double)20.23, film.getReplacement_cost());
 //    }
 
     @Test

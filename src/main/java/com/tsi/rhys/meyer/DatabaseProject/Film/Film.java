@@ -3,7 +3,6 @@ package com.tsi.rhys.meyer.DatabaseProject.Film;
 import com.tsi.rhys.meyer.DatabaseProject.Actor.Actor;
 
 import javax.persistence.*;
-import java.time.Year;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,7 +16,6 @@ public class Film {
     private String description;
     private int release_year;
     private int language_id;
-    //private int original_language_id;
     private int rental_duration;
     private double rental_rate;
     private int length;
@@ -62,8 +60,6 @@ public class Film {
         this.language_id = language_id;
 
     }
-    //saveFilm.getTitle(),saveFilm.getDescription(),saveFilm.getRelease_year(),saveFilm.getLength(),saveFilm.getRating(),saveFilm.getLanguage_id(),saveFilm.getSpecial_features());
-    //Film saveFilm = new Film("Test Name", "Description Test",2006, 1, "PG", 90, "Test Feature");
     public Film(String title, String description, int release_year, int length, String rating, int language_id,String special_features ) {
 
         this.title = title;
@@ -117,9 +113,6 @@ public class Film {
         return language_id;
     }
 
-//    public int getOriginal_language_id() {
-//        return original_language_id;
-//    }
 
     public int getRental_duration() {
         return rental_duration;
@@ -165,10 +158,6 @@ public class Film {
         this.language_id = language_id;
     }
 
-//    public void setOriginal_language_id(int original_language_id) {
-//        this.original_language_id = original_language_id;
-//    }
-//
     public void setRental_duration(int rental_duration) {
         this.rental_duration = rental_duration;
     }
