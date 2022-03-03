@@ -3,11 +3,12 @@ package com.tsi.rhys.meyer.DatabaseProject.Film;
 import com.tsi.rhys.meyer.DatabaseProject.Actor.Actor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Film {
+public class Film implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,7 +51,7 @@ public class Film {
     public Film()
     {}
 
-    public Film(String title, String description, int release_year, int length, String rating, int language_id, String special_features, int rental_duration, double replacement_cost) {
+    public Film(String title, String description, int release_year, int length, String rating, int language_id) {
 
         this.title = title;
         this.description = description;
@@ -88,10 +89,6 @@ public class Film {
         this.special_features = special_features;
 
     }
-
-    public Film(String test, String desc, int i, int i1, String pg, int i2) {
-    }
-
 
     public int getFilm_id() {
         return film_id;

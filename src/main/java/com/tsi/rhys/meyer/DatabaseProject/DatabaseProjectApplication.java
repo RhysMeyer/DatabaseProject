@@ -43,7 +43,7 @@ public class DatabaseProjectApplication {
 		return actorRepository.findAll();
 	}
 
-	@RequestMapping(value="/actor/{actor_id}", method = RequestMethod.GET)
+	@GetMapping(value="/actor/{actor_id}")
 	public @ResponseBody
 	Optional<Actor> getActorID(@PathVariable("actor_id") int actorID) {
 		return actorRepository.	findById(actorID);
@@ -57,10 +57,9 @@ public class DatabaseProjectApplication {
 		return filmRepository.findAll();
 	}
 
-	@RequestMapping(value="/film/{film_id}", method = RequestMethod.GET)
+	@GetMapping("/film/{film_id}")
 	public @ResponseBody
 	Optional<Film> getFilmID(@PathVariable("film_id") int filmID) {
-		//filmRepository.findById(filmID).orElseThrow();
 		return filmRepository.findById(filmID);
 	}
 
@@ -107,7 +106,7 @@ public class DatabaseProjectApplication {
 		return  languageRepository.findAll();
 	}
 
-	@RequestMapping(value="/language/{language_id}", method = RequestMethod.GET)
+	@GetMapping("/language/{language_id}")
 	public @ResponseBody
 	Optional<Language> getLanguageID(@PathVariable("language_id") int languageID) {
 		return languageRepository.findById(languageID);
