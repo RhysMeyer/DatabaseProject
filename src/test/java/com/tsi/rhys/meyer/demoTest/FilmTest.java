@@ -35,6 +35,19 @@ class FilmTest {
 //    }
 
     @Test
+    void test_filmInstantiation2(){
+        film = new Film(1,"test","desc",2000,2,"PG",1,"Trailers");
+        assertEquals(1,film.getFilm_id());
+        assertEquals("test",film.getTitle());
+        assertEquals("desc",film.getDescription());
+        assertEquals(2000,film.getRelease_year());
+        assertEquals(2,film.getLength());
+        assertEquals("PG",film.getRating());
+        assertEquals(1, film.getLanguage_id());
+        assertEquals("Trailers",film.getSpecial_features());
+    }
+
+    @Test
     void test_filmInstantiation3(){
         film = new Film("test","desc",2000,2,"PG",1,"Trailers");
         assertEquals("test",film.getTitle());
